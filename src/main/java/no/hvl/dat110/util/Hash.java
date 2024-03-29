@@ -8,42 +8,30 @@ package no.hvl.dat110.util;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Hash { 
 	
 	
-	public static BigInteger hashOf(String entity) {	
+	public static BigInteger hashOf(String entity)  {
 		
 		BigInteger hashint = null;
-		
-		// Task: Hash a given string using MD5 and return the result as a BigInteger.
-		
-		// we use MD5 with 128 bits digest
-		
-		// compute the hash of the input 'entity'
-		
-		// convert the hash into hex format
-		
-		// convert the hex into BigInteger
-		
-		// return the BigInteger
-		
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(entity.getBytes(StandardCharsets.UTF_8));
+            byte[] digest = md.digest();
+			hashint = new BigInteger(1, digest);
+		}catch(NoSuchAlgorithmException e){
+			throw new RuntimeException("No md5 algorithm", e);
+		}
+
 		return hashint;
 	}
 	
 	public static BigInteger addressSize() {
-		
-		// Task: compute the address size of MD5
-		
-		// compute the number of bits = bitSize()
-		
-		// compute the address size = 2 ^ number of bits
-		
-		// return the address size
-		
-		return null;
+		return BigInteger.valueOf(2).pow(128);
 	}
 	
 	public static int bitSize() {
