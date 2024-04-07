@@ -17,6 +17,7 @@ import java.text.NumberFormat;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -65,6 +66,9 @@ public class FileManager {
 		// hash the replica
 		
 		// store the hash in the replicafiles array.
+
+		IntStream.range(0, numReplicas).forEach(i -> replicafiles[i] = Hash.hashOf(filename + i));
+
 	}
 	
     /**

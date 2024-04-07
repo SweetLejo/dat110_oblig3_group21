@@ -39,7 +39,7 @@ class TestFileReplicas {
 		
 		Collections.sort(file1expected);
 		Collections.sort(file1actual_list);
-		
+
 		assertTrue(file1expected.equals(file1actual_list));
 		
 	}
