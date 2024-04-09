@@ -19,6 +19,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.IntStream;
 
+import no.hvl.dat110.middleware.Node;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -85,13 +86,20 @@ public class FileManager {
     	int counter = 0;
 	
     	// Task1: Given a filename, make replicas and distribute them to all active peers such that: pred < replica <= peer
-    	
+
     	// Task2: assign a replica as the primary for this file. Hint, see the slide (project 3) on Canvas
     	
     	// create replicas of the filename
-    	
+    	createReplicaFiles();
 		// iterate over the replicas
-    	
+    	for(int i = 0; i < replicafiles.length; i++){
+			NodeInterface successor = chordnode.findSuccessor(replicafiles[i]);
+
+			successor.addKey(replicafiles[i]);
+			successor.saveFileContent(filename, replicafiles[i], bytesOfFile, counter == index);
+			counter++;
+		}
+		return counter;
     	// for each replica, find its successor (peer/node) by performing findSuccessor(replica)
     	
     	// call the addKey on the successor and add the replica
@@ -126,6 +134,13 @@ public class FileManager {
 		// get the metadata (Message) of the replica from the successor (i.e., active peer) of the file
 		
 		// save the metadata in the set activeNodesforFile.
+
+		createReplicaFiles();
+		for(int i = 0; i < replicafiles.length; i++){
+			NodeInterface succ = chordnode.findSuccessor(replicafiles[i]);
+
+			activeNodesforFile.add(succ.getFilesMetadata(replicafiles[i]));
+		}
 		
 		return activeNodesforFile;
 	}
@@ -145,8 +160,10 @@ public class FileManager {
 		// use the primaryServer boolean variable contained in the Message class to check if it is the primary or not
 		
 		// return the primary when found (i.e., use Util.getProcessStub to get the stub and return it)
+
+		Message message = activeNodesforFile.stream().filter(Message::isPrimaryServer).findAny().orElse(null);
 		
-		return null; 
+		return Util.getProcessStub(message.getNodeName(), message.getPort());
 	}
 	
     /**
