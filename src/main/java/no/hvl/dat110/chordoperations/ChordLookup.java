@@ -33,18 +33,27 @@ public class ChordLookup {
 	
 	public NodeInterface findSuccessor(BigInteger key) throws RemoteException {
 		// ask this node to find the successor of key
-		
+		NodeInterface successor = node.getSuccessor();
 		// get the successor of the node
-		
+		BigInteger succId = successor.getNodeID();
+
+		if(succId.equals(node.getNodeID())){
+			return findHighestPredecessor(key);
+		}
+
+
 		// check that key is a member of the set {nodeid+1,...,succID} i.e. (nodeid+1 <= key <= succID) using the checkInterval
-		
+		boolean isInRange = Util.checkInterval(key, node.getNodeID().add(BigInteger.ONE), succId);
 		// if logic returns true, then return the successor
-		
+		if(isInRange){
+			return successor;
+		}else{
+			return findHighestPredecessor(key).findSuccessor(key);
+		}
 		// if logic returns false; call findHighestPredecessor(key)
 		
 		// do highest_pred.findSuccessor(key) - This is a recursive call until logic returns true
-				
-		return null;					
+
 	}
 	
 	/**
@@ -54,18 +63,18 @@ public class ChordLookup {
 	 * @throws RemoteException
 	 */
 	private NodeInterface findHighestPredecessor(BigInteger ID) throws RemoteException {
-		
-		// collect the entries in the finger table for this node
-		
-		// starting from the last entry, iterate over the finger table
-		
-		// for each finger, obtain a stub from the registry
-		
-		// check that finger is a member of the set {nodeID+1,...,ID-1} i.e. (nodeID+1 <= finger <= key-1) using the ComputeLogic
-		
-		// if logic returns true, then return the finger (means finger is the closest to key)
-		
-		return (NodeInterface) node;			
+
+		List<NodeInterface> finger = node.getFingerTable();
+
+		for (int i = finger.size() - 1; i >= 0; i--) {
+			//NodeInterface stub = Util.getProcessStub(node.getNodeName(), node.getPort());
+
+			if (Util.checkInterval(finger.get(i).getNodeID(), node.getNodeID().add(BigInteger.ONE), ID.subtract(BigInteger.ONE))) {
+				return finger.get(i);
+			}
+		}
+
+		return node;
 	}
 	
 	public void copyKeysFromSuccessor(NodeInterface succ) {
