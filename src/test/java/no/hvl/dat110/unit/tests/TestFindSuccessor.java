@@ -25,7 +25,7 @@ class TestFindSuccessor {
 			Thread.sleep(12000); 			// let the ring stabilize before distributing files
 			// distribute the files to the ring
 			setup.doDistribute();
-			Thread.sleep(5000); 			// let the ring stabilize before starting the test
+			Thread.sleep(4000); 			// let the ring stabilize before starting the test
 		}
 	}
 
@@ -38,7 +38,9 @@ class TestFindSuccessor {
 		BigInteger key1 = Hash.hashOf("file10");		// 73806995735690189889297542544385123161  | succ=process5 (121411138451101288395601026024677976156)
 		BigInteger key2 = Hash.hashOf("file20");		// 127615430233524719490345743798572761786 | succ=process4 (210821560651360572675896360671414673172)
 		BigInteger key3 = Hash.hashOf("file31"); 		// 83550242532527638904138483233262313637  | succ=process5 (121411138451101288395601026024677976156)
-		
+
+
+
 		// expected
 		BigInteger key1expected = new BigInteger("121411138451101288395601026024677976156");
 		BigInteger key2expected = new BigInteger("210821560651360572675896360671414673172");

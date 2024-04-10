@@ -30,30 +30,23 @@ public class ChordLookup {
 	public ChordLookup(Node node) {
 		this.node = node;
 	}
-	
+
 	public NodeInterface findSuccessor(BigInteger key) throws RemoteException {
 		// ask this node to find the successor of key
 		NodeInterface successor = node.getSuccessor();
 		// get the successor of the node
 		BigInteger succId = successor.getNodeID();
 
-		if(succId.equals(node.getNodeID())){
-			return findHighestPredecessor(key);
-		}
-
-
 		// check that key is a member of the set {nodeid+1,...,succID} i.e. (nodeid+1 <= key <= succID) using the checkInterval
 		boolean isInRange = Util.checkInterval(key, node.getNodeID().add(BigInteger.ONE), succId);
 		// if logic returns true, then return the successor
+
 		if(isInRange){
 			return successor;
-		}else{
-			return findHighestPredecessor(key).findSuccessor(key);
-		}
-		// if logic returns false; call findHighestPredecessor(key)
-		
-		// do highest_pred.findSuccessor(key) - This is a recursive call until logic returns true
-
+		} else {
+			NodeInterface highestPredecessor = findHighestPredecessor(key);
+			return highestPredecessor.findSuccessor(key);
+			}
 	}
 	
 	/**
@@ -64,13 +57,13 @@ public class ChordLookup {
 	 */
 	private NodeInterface findHighestPredecessor(BigInteger ID) throws RemoteException {
 
-		List<NodeInterface> finger = node.getFingerTable();
+		List<NodeInterface> fingerTable = node.getFingerTable();
 
-		for (int i = finger.size() - 1; i >= 0; i--) {
-			//NodeInterface stub = Util.getProcessStub(node.getNodeName(), node.getPort());
-
-			if (Util.checkInterval(finger.get(i).getNodeID(), node.getNodeID().add(BigInteger.ONE), ID.subtract(BigInteger.ONE))) {
-				return finger.get(i);
+		for (int i = fingerTable.size() - 1; i >= 0; i--) {
+			NodeInterface finger = fingerTable.get(i);
+			NodeInterface fingerStub = Util.getProcessStub(finger.getNodeName(), finger.getPort());
+			if (Util.checkInterval(fingerStub.getNodeID(), node.getNodeID().add(BigInteger.ONE), ID.subtract(BigInteger.ONE))) {
+				return fingerStub;
 			}
 		}
 

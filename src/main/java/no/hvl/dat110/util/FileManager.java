@@ -109,7 +109,7 @@ public class FileManager {
     	// call the saveFileContent() on the successor and set isPrimary=true if logic above is true otherwise set isPrimary=false
     	
     	// increment counter
-		return counter;
+		//return counter;
     }
 	
 	/**

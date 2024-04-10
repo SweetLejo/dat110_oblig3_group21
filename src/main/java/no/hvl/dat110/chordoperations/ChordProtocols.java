@@ -152,38 +152,31 @@ public class ChordProtocols {
 		
 		logger.info("Update of successor and predecessor completed...bye!");
 	}
-	
+
 	public void fixFingerTable() {
-		
+
 		try {
 			logger.info("Fixing the FingerTable for the Node: "+ chordnode.getNodeName());
-	
+
 			// get the finger table from the chordnode (list object)
+			List<NodeInterface> fingerTable = chordnode.getFingerTable();
 			// ensure to clear the current finger table
-			chordnode.getFingerTable().clear();
-
+			fingerTable.clear();
 			// get the address size from the Hash class. This is the modulus and our address space (2^mbit = modulus)
-
+			BigInteger adressSize = Hash.addressSize();
 			// get the number of bits from the Hash class. Number of bits = size of the finger table
-
-			// iterate over the number of bits			
-			
-			// compute: k = succ(n + 2^(i)) mod 2^mbit
-			
-			// then: use chordnode to find the successor of k. (i.e., succnode = chordnode.findSuccessor(k))
-			
-			// check that succnode is not null, then add it to the finger table
-
-			for(int i = 0 ; i < Hash.bitSize() ; i++){
-				BigInteger k = chordnode.getNodeID().add(BigInteger.valueOf(2).pow(i)).mod(Hash.addressSize());
-
-				NodeInterface succ = chordnode.findSuccessor(k);
-
-				if(succ != null){
-					chordnode.getFingerTable().add(succ);
+			int numberOfBits = Hash.bitSize();
+			// iterate over the number of bits
+			for(int i = 0; i < numberOfBits; i++) {
+				// compute: k = succ(n + 2^(i)) mod 2^mbit
+				BigInteger k = chordnode.getNodeID().add(BigInteger.valueOf(2).pow(i)).mod(adressSize);
+				// then: use chordnode to find the successor of k. (i.e., succnode = chordnode.findSuccessor(k))
+				NodeInterface succnode = chordnode.findSuccessor(k);
+				// check that succnode is not null, then add it to the finger table
+				if (succnode!= null) {
+					fingerTable.add(succnode);
 				}
 			}
-
 		} catch (RemoteException e) {
 			//
 		}
