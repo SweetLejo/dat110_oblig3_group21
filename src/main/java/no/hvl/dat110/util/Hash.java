@@ -31,15 +31,7 @@ public class Hash {
 
 	public static BigInteger addressSize() {
 
-		// Task: compute the address size of MD5
-		// compute the number of bits = bitSize()
-		// compute the address size = 2 ^ number of bits
-		// return the address size
-
-		int bits = bitSize();
-		BigInteger bigInt = BigInteger.valueOf(2).pow(bits);
-
-		return bigInt;
+        return BigInteger.valueOf(2).pow(bitSize());
 	}
 
 	public static int bitSize() {

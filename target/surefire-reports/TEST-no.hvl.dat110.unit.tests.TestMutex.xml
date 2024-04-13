@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="no.hvl.dat110.unit.tests.TestMutex" time="0.062" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="no.hvl.dat110.unit.tests.TestMutex" time="0.037" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-jdk/lib"/>
-    <property name="sun.java.command" value="/home/leo/mystuff/school/dat110/obligs/dat110_oblig3_group21/target/surefire/surefirebooter-20240413144228174_3.jar /home/leo/mystuff/school/dat110/obligs/dat110_oblig3_group21/target/surefire 2024-04-13T14-42-27_856-jvmRun1 surefire-20240413144228174_1tmp surefire_0-20240413144228174_2tmp"/>
+    <property name="sun.java.command" value="/home/leo/mystuff/school/dat110/obligs/dat110_oblig3_group21/target/surefire/surefirebooter-20240413144525990_3.jar /home/leo/mystuff/school/dat110/obligs/dat110_oblig3_group21/target/surefire 2024-04-13T14-45-25_674-jvmRun1 surefire-20240413144525990_1tmp surefire_0-20240413144525990_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/leo/mystuff/school/dat110/obligs/dat110_oblig3_group21/target/test-classes:/home/leo/mystuff/school/dat110/obligs/dat110_oblig3_group21/target/classes:/home/leo/.m2/repository/org/apache/logging/log4j/log4j-core/2.20.0/log4j-core-2.20.0.jar:/home/leo/.m2/repository/org/apache/logging/log4j/log4j-api/2.20.0/log4j-api-2.20.0.jar:/home/leo/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar:/home/leo/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/leo/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar:/home/leo/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/home/leo/mystuff/school/dat110/obligs/dat110_oblig3_group21/target/surefire/surefirebooter-20240413144228174_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/leo/mystuff/school/dat110/obligs/dat110_oblig3_group21/target/surefire/surefirebooter-20240413144525990_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.1+12-LTS-29"/>
     <property name="user.name" value="leo"/>
@@ -53,32 +53,32 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="test" classname="no.hvl.dat110.unit.tests.TestMutex" time="0.059">
-    <system-out><![CDATA[2024-04-13 14:42:55 INFO  MutualExclusion:194 - Releasing locks from = 4
-2024-04-13 14:42:55 INFO  MutualExclusion:53 - process1 wants to access CS
-2024-04-13 14:42:55 INFO  MutualExclusion:82 - Number of peers to vote = 4
-2024-04-13 14:42:55 INFO  MutualExclusion:53 - process2 wants to access CS
-2024-04-13 14:42:55 INFO  MutualExclusion:82 - Number of peers to vote = 4
-2024-04-13 14:42:55 INFO  MutualExclusion:53 - process4 wants to access CS
-2024-04-13 14:42:55 INFO  MutualExclusion:82 - Number of peers to vote = 4
-2024-04-13 14:42:55 INFO  MutualExclusion:53 - process5 wants to access CS
-2024-04-13 14:42:55 INFO  MutualExclusion:82 - Number of peers to vote = 4
-2024-04-13 14:42:55 INFO  MutualExclusion:210 - process5: size of queueack = 3
-2024-04-13 14:42:55 INFO  MutualExclusion:210 - process4: size of queueack = 2
-2024-04-13 14:42:55 INFO  MutualExclusion:210 - process2: size of queueack = 5
-2024-04-13 14:42:55 INFO  MutualExclusion:210 - process1: size of queueack = 4
-2024-04-13 14:42:55 INFO  UpdateOperations:90 - Trying to update file replicas for peer: 210821560651360572675896360671414673172
-2024-04-13 14:42:56 INFO  UpdateOperations:69 - Update file is being performed by this peer: process4 | 140065589670395970233963560630295105848
-2024-04-13 14:42:56 INFO  UpdateOperations:102 - Finished updating file for peer: 210821560651360572675896360671414673172
-2024-04-13 14:42:56 INFO  UpdateOperations:90 - Trying to update file replicas for peer: 15618062003214643351512781541041391612
-2024-04-13 14:42:56 INFO  UpdateOperations:69 - Update file is being performed by this peer: process2 | 13988058880685873568223126745537177142
-2024-04-13 14:42:56 INFO  UpdateOperations:102 - Finished updating file for peer: 15618062003214643351512781541041391612
-2024-04-13 14:42:56 INFO  UpdateOperations:90 - Trying to update file replicas for peer: 53937554629190552131995290006614509577
-2024-04-13 14:42:56 INFO  UpdateOperations:69 - Update file is being performed by this peer: process1 | 22851974182570490653634187770374799407
-2024-04-13 14:42:56 INFO  UpdateOperations:102 - Finished updating file for peer: 53937554629190552131995290006614509577
-2024-04-13 14:42:56 INFO  UpdateOperations:90 - Trying to update file replicas for peer: 121411138451101288395601026024677976156
-2024-04-13 14:42:56 INFO  UpdateOperations:69 - Update file is being performed by this peer: process5 | 73806995735690189889297542544385123161
-2024-04-13 14:42:56 INFO  UpdateOperations:102 - Finished updating file for peer: 121411138451101288395601026024677976156
+  <testcase name="test" classname="no.hvl.dat110.unit.tests.TestMutex" time="0.034">
+    <system-out><![CDATA[2024-04-13 14:45:53 INFO  MutualExclusion:185 - Releasing locks from = 4
+2024-04-13 14:45:53 INFO  MutualExclusion:53 - process1 wants to access CS
+2024-04-13 14:45:53 INFO  MutualExclusion:53 - process4 wants to access CS
+2024-04-13 14:45:53 INFO  MutualExclusion:53 - process5 wants to access CS
+2024-04-13 14:45:53 INFO  MutualExclusion:82 - Number of peers to vote = 4
+2024-04-13 14:45:53 INFO  MutualExclusion:53 - process2 wants to access CS
+2024-04-13 14:45:53 INFO  MutualExclusion:82 - Number of peers to vote = 4
+2024-04-13 14:45:53 INFO  MutualExclusion:82 - Number of peers to vote = 4
+2024-04-13 14:45:53 INFO  MutualExclusion:82 - Number of peers to vote = 4
+2024-04-13 14:45:53 INFO  MutualExclusion:201 - process4: size of queueack = 2
+2024-04-13 14:45:53 INFO  MutualExclusion:201 - process5: size of queueack = 3
+2024-04-13 14:45:53 INFO  MutualExclusion:201 - process2: size of queueack = 5
+2024-04-13 14:45:53 INFO  MutualExclusion:201 - process1: size of queueack = 4
+2024-04-13 14:45:53 INFO  UpdateOperations:90 - Trying to update file replicas for peer: 210821560651360572675896360671414673172
+2024-04-13 14:45:53 INFO  UpdateOperations:69 - Update file is being performed by this peer: process4 | 140065589670395970233963560630295105848
+2024-04-13 14:45:53 INFO  UpdateOperations:102 - Finished updating file for peer: 210821560651360572675896360671414673172
+2024-04-13 14:45:53 INFO  UpdateOperations:90 - Trying to update file replicas for peer: 15618062003214643351512781541041391612
+2024-04-13 14:45:53 INFO  UpdateOperations:69 - Update file is being performed by this peer: process2 | 13988058880685873568223126745537177142
+2024-04-13 14:45:53 INFO  UpdateOperations:102 - Finished updating file for peer: 15618062003214643351512781541041391612
+2024-04-13 14:45:53 INFO  UpdateOperations:90 - Trying to update file replicas for peer: 53937554629190552131995290006614509577
+2024-04-13 14:45:53 INFO  UpdateOperations:69 - Update file is being performed by this peer: process1 | 22851974182570490653634187770374799407
+2024-04-13 14:45:53 INFO  UpdateOperations:102 - Finished updating file for peer: 53937554629190552131995290006614509577
+2024-04-13 14:45:53 INFO  UpdateOperations:90 - Trying to update file replicas for peer: 121411138451101288395601026024677976156
+2024-04-13 14:45:53 INFO  UpdateOperations:69 - Update file is being performed by this peer: process5 | 73806995735690189889297542544385123161
+2024-04-13 14:45:53 INFO  UpdateOperations:102 - Finished updating file for peer: 121411138451101288395601026024677976156
 fu1: true
 fu2: false
 fu4: false
